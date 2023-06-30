@@ -1,24 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <form acion="">
-        {% csrf_token %}
-        <select name="" id="">
-            {% for food in foods%}
-            <option value="{{food.name}}">{{food.name}}</option>
-            {% endfor %}
-        </select>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST">
+                    <div class="form-group">
+                    {% csrf_token %}
+                    <label class="col-md-2">
+                       <b>Select food to Add</b>
+                    </label>
+                    <select class="col-md-6 form-control" name="foodconsume" id="foodconsume">
+                        {% for food in foods%}
+                        <option value="{{food.name}}">{{food.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="btn btn-success" type="submit">Add</button>
+                    </div>   
+                </form>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <h1>Todays consumption</h1>
+                </div>
 
-    </form>
-    
+                <table class="table table-striped table-primary" id="table">
+                    <tr class="bg-primary">
+                        <th>Food item</th>
+                        <th>Carbs(gm)</th>
+                        <th>Fats(gm)</th>
+                        <th>Protiens(gm)</th>
+                        <th>Calories(kcal)</th>
+                    </tr>
+                    {% for c in consumed_food %}
+                    <tr>
+                       <td>{{c.food_consumed}}</td>
+                       <td>{{c.food_consumed.carbs}}</td>
+                       <td>{{c.food_consumed.fats}}</td>
+                       <td>{{c.food_consumed.proteins}}</td>
+                       <td>{{c.food_consumed.calories}}</td>
 
-        
+                        
+                    </tr>
+                    {% endfor%}
+                </table>
+            </div>
+            <div class="col-md-5 offset-1">
 
-   
+            </div>
+        </div>
+    </div>
 </body>
 </html>
