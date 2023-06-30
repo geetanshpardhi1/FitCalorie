@@ -48,9 +48,17 @@
                        <td>{{c.food_consumed.proteins}}</td>
                        <td>{{c.food_consumed.calories}}</td>
 
+
                         
                     </tr>
                     {% endfor%}
+                    <tr>
+                        <td id="name"><b>Total</b></td>
+                        <td id="carbs"></td>
+                        <td id="fats"></td>
+                        <td id="protiens"></td>
+                        <td id="calories"></td>
+                    </tr>
                 </table>
             </div>
             <div class="col-md-5 offset-1">
@@ -59,4 +67,27 @@
         </div>
     </div>
 </body>
+<script>
+    var table = document.getElementById("table");
+    var carbs = 0,fats =0 ,protiens = 0,calories =0
+ 
+    
+    for(var i=1;i<table.rows.length-1;i++){
+        
+        carbs += parseFloat(table.rows[i].cells[1].innerHTML);
+        carbs = Math.round(carbs);
+        fats += parseFloat(table.rows[i].cells[2].innerHTML);
+        fats = Math.round(fats);
+        protiens += parseFloat(table.rows[i].cells[3].innerHTML);
+        protiens = Math.round(protiens);
+        calories += parseFloat(table.rows[i].cells[4].innerHTML);
+        calories = Math.round(calories);
+       
+    }
+    
+    document.getElementById("carbs").innerHTML = carbs;
+    document.getElementById("fats").innerHTML = fats;
+    document.getElementById("protiens").innerHTML = protiens;
+    document.getElementById("calories").innerHTML = calories;
+</script>
 </html>
